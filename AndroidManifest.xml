@@ -6,6 +6,7 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="13" />
+    <uses-feature android:required="false" android:name="android.hardware.touchscreen"/>
 
     <application android:label="@string/ime_name"
         android:icon="@drawable/ic_launcher"
