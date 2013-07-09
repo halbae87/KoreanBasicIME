@@ -18,7 +18,7 @@
 */
 -->
 
-<com.android.halbae87.koreanbasicime.LatinKeyboardView
+<com.halbae87.koreanbasicime.LatinKeyboardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/keyboard"
         android:layout_alignParentBottom="true"

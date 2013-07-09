@@ -410,7 +410,7 @@ public class SoftKeyboard extends InputMethodService
      * PROCESS_HARD_KEYS option.
      */
     private boolean translateKeyDown(int keyCode, KeyEvent event) {
-    	// // Log.v(TAG, "translateKeyDown() called");
+    	// Log.v(TAG, "translateKeyDown() called");
         mMetaState = MetaKeyKeyListener.handleKeyDown(mMetaState,
                 keyCode, event);
         int c = event.getUnicodeChar(MetaKeyKeyListener.getMetaState(mMetaState));
@@ -449,7 +449,7 @@ public class SoftKeyboard extends InputMethodService
      */
     @SuppressWarnings({ })
 	@Override public boolean onKeyDown(int keyCode, KeyEvent event) {
-    	// // Log.v(TAG, "onKeyDown - keyCode = " + event.keyCodeToString(keyCode) + " ("+ keyCode +")");
+    	// Log.v(TAG, "onKeyDown - keyCode = " + event.keyCodeToString(keyCode) + " ("+ keyCode +")");
     	if (event.isShiftPressed())
     		mHwShift = true;
     	// if ALT or CTRL meta keys are using, the key event should not be touched here and be passed through to. 
@@ -481,7 +481,7 @@ public class SoftKeyboard extends InputMethodService
 	            			kauto.FinishAutomataWithoutInput();
 	            		}
 	            		kauto.ToggleMode();
-	            		// // Log.v(TAG, "onKeyDown -- SHIFT SPACE. Korean Mode = " + kauto.IsKoreanMode());
+	            		// Log.v(TAG, "onKeyDown -- SHIFT SPACE. Korean Mode = " + kauto.IsKoreanMode());
 	            		return true;
 	            	}
 	            	else
@@ -495,7 +495,7 @@ public class SoftKeyboard extends InputMethodService
 	            case KEYCODE_HANGUL:
 	            	if (!mNoKorean)
 	            	{
-	            		// // Log.v(TAG, "onKeyDown -- KEYCODE_HANGUL. Korean Mode = " + kauto.IsKoreanMode() +" Let's toggle it.");
+	            		// Log.v(TAG, "onKeyDown -- KEYCODE_HANGUL. Korean Mode = " + kauto.IsKoreanMode() +" Let's toggle it.");
 	        			if (mComposing.length() > 0)
 	        			{
 	        				InputConnection ic = getCurrentInputConnection();
@@ -512,7 +512,7 @@ public class SoftKeyboard extends InputMethodService
 	            	}
 	            	else
 	            	{
-	            		// // Log.v(TAG, "onKeyDown -- KEYCODE_HANGUL. but Korean is not allowed in this context. ignore this.");
+	            		// Log.v(TAG, "onKeyDown -- KEYCODE_HANGUL. but Korean is not allowed in this context. ignore this.");
 	            	}
 	            	break;
 	
@@ -577,7 +577,7 @@ public class SoftKeyboard extends InputMethodService
         // If we want to do transformations on text being entered with a hard
         // keyboard, we need to process the up events to update the meta key
         // state we are tracking.
-    	// // Log.v(TAG, "onKeyUp - keyCode = " + event.keyCodeToString(keyCode));
+    	// Log.v(TAG, "onKeyUp - keyCode = " + event.keyCodeToString(keyCode));
         if (PROCESS_HARD_KEYS) {
             // if (mPredictionOn) {
                 mMetaState = MetaKeyKeyListener.handleKeyUp(mMetaState,
@@ -616,7 +616,7 @@ public class SoftKeyboard extends InputMethodService
 	            if (ei != null && ei.inputType != EditorInfo.TYPE_NULL) {
 	                caps = getCurrentInputConnection().getCursorCapsMode(attr.inputType);
 	            }
-	            // // Log.v(TAG, "updateShiftKeyState - mCapsLock = " + mCapsLock + ", caps = " + caps);
+	            // Log.v(TAG, "updateShiftKeyState - mCapsLock = " + mCapsLock + ", caps = " + caps);
 	            mInputView.setShifted(mCapsLock || caps != 0);
         	}
         	else if (mKoreanShiftedKeyboard == mInputView.getKeyboard())
@@ -808,9 +808,9 @@ public class SoftKeyboard extends InputMethodService
     		int ret = kauto.DoBackSpace();
     		if (ret == KoreanAutomata.ACTION_ERROR)
     		{
-    			// // Log.v(TAG, "handleBackspace() - calling DoBackSpace() failed.");
+    			// Log.v(TAG, "handleBackspace() - calling DoBackSpace() failed.");
     			//// Log.v(TAG, "  mCompositionString = [" + kauto.GetCompositionString()+"]");
-    			// // Log.v(TAG, "  mState = " + kauto.GetState());
+    			// Log.v(TAG, "  mState = " + kauto.GetState());
     			updateShiftKeyState(getCurrentInputEditorInfo());
     			return;
     		}
@@ -841,8 +841,8 @@ public class SoftKeyboard extends InputMethodService
     		/*
     		if ((ret & KoreanAutomata.ACTION_USE_INPUT_AS_RESULT) != 0)
     		{
-    			// // Log.v(TAG, "handleBackspace() - something unexpected behavior happened during DoBackSpace()..");
-    			// // Log.v(TAG, "   - Let it go through.");
+    			// Log.v(TAG, "handleBackspace() - something unexpected behavior happened during DoBackSpace()..");
+    			// Log.v(TAG, "   - Let it go through.");
     			cont = true;
     		}
     		if (!cont)
@@ -879,14 +879,14 @@ public class SoftKeyboard extends InputMethodService
         // add Korean Keyboards
         else if (currentKeyboard == mKoreanKeyboard)
         {
-        	// // Log.v(TAG,"handleShift -- shift on Korean Keyboard");
+        	// Log.v(TAG,"handleShift -- shift on Korean Keyboard");
         	mKoreanKeyboard.setShifted(true);
             mInputView.setKeyboard(mKoreanShiftedKeyboard);
             mKoreanShiftedKeyboard.setShifted(true);
         }
         else if (currentKeyboard == mKoreanShiftedKeyboard)
         {
-        	// // Log.v(TAG,"handleShift -- shift off Korean Keyboard");
+        	// Log.v(TAG,"handleShift -- shift off Korean Keyboard");
         	mKoreanShiftedKeyboard.setShifted(false);
             mInputView.setKeyboard(mKoreanKeyboard);
             mKoreanKeyboard.setShifted(false);
@@ -987,7 +987,7 @@ public class SoftKeyboard extends InputMethodService
         		 // Log.v(TAG, "   ret = [" + ret + "]");
         		if ((ret & KoreanAutomata.ACTION_UPDATE_COMPLETESTR) != 0)
 	        	{
-        			// // Log.v(TAG, " update complete string - " + kauto.GetCompleteString());
+        			// Log.v(TAG, " update complete string - " + kauto.GetCompleteString());
 	        		// mComposing.setLength(0);
         			if (mComposing.length() > 0)
         				mComposing.replace(mComposing.length()-1, mComposing.length(), kauto.GetCompleteString());
@@ -1001,7 +1001,7 @@ public class SoftKeyboard extends InputMethodService
 	        	}
         		if ((ret & KoreanAutomata.ACTION_UPDATE_COMPOSITIONSTR) != 0)
 	        	{
-        			// // Log.v(TAG, " update composition string - " + kauto.GetCompositionString());
+        			// Log.v(TAG, " update composition string - " + kauto.GetCompositionString());
 	        		// mComposing.setLength(0);
         			if ((mComposing.length() > 0) && ((ret & KoreanAutomata.ACTION_UPDATE_COMPLETESTR) == 0))
         				mComposing.replace(mComposing.length()-1, mComposing.length(), kauto.GetCompositionString());
