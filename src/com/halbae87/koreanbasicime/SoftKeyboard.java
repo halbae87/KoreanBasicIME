@@ -969,6 +969,7 @@ public class SoftKeyboard extends InputMethodService
             updateShiftKeyState(getCurrentInputEditorInfo());
             // updateCandidates();
         } else {
+        	/*
         	 // Log.v(TAG, "handleCharacter() - POS 2");
         	int ret = kauto.DoAutomata((char )primaryCode, keyState);
         	if (ret < 0)
@@ -1021,6 +1022,14 @@ public class SoftKeyboard extends InputMethodService
             // updateShiftKeyState(getCurrentInputEditorInfo());
 //            getCurrentInputConnection().commitText(
 //                    String.valueOf((char) primaryCode), 1);
+        	*/
+        	// Log.v(TAG,"handleCharacter --- non-alphabet primaryCode = [" + (char)primaryCode + "]");
+    		if (mComposing.length() > 0) {
+    			getCurrentInputConnection().commitText(mComposing, 1);
+    			mComposing.setLength(0);
+    		}
+			kauto.FinishAutomataWithoutInput();
+            getCurrentInputConnection().commitText(String.valueOf((char) primaryCode), 1);
         }
     }
 
