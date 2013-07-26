@@ -21,6 +21,7 @@ public class KoreanAutomata {
 	public static final int ACTION_UPDATE_COMPOSITIONSTR = 1;
 	public static final int ACTION_UPDATE_COMPLETESTR = 2;
 	public static final int ACTION_USE_INPUT_AS_RESULT = 4;
+	public static final int ACTION_APPEND = 8;
 	// public static final int ACTION_BACKSPACE = 8; not used.
 	public static final int ACTION_ERROR = -1;
 
@@ -438,10 +439,11 @@ public class KoreanAutomata {
 			ret = ACTION_USE_INPUT_AS_RESULT; 
 			break; 
 		case  1:  // current composition string: single consonant only
-		case  4:  // current composition string: single vowel 
+		case  4:  // current composition string: single vowel only
 			mCompositionString = "";
 			mState = 0;
-			ret = ACTION_UPDATE_COMPOSITIONSTR; 
+			// ret = ACTION_UPDATE_COMPOSITIONSTR; 
+			ret = ACTION_USE_INPUT_AS_RESULT; 
 			break; 
 
 		case  2: // current composition string: single consonant + single vowel
@@ -687,7 +689,7 @@ public class KoreanAutomata {
 		mCompleteString = "";
 		mCompositionString = "";
 		mCompositionString += code; 
-		return ACTION_UPDATE_COMPOSITIONSTR;
+		return ACTION_UPDATE_COMPOSITIONSTR | ACTION_APPEND;
 	};
 
 	private int DoState01(char code) // current composition string: single consonant only

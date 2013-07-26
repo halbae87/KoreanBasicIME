@@ -953,7 +953,7 @@ public class SoftKeyboard extends InputMethodService
 	        	{
         			// Log.v(TAG, "--- UPDATE_COMPOSITIONSTR");
 	        		// mComposing.setLength(0);
-        			if ((mComposing.length() > 0) && ((ret & KoreanAutomata.ACTION_UPDATE_COMPLETESTR) == 0))
+        			if ((mComposing.length() > 0) && ((ret & KoreanAutomata.ACTION_UPDATE_COMPLETESTR) == 0) && ((ret & KoreanAutomata.ACTION_APPEND) == 0))
         				mComposing.replace(mComposing.length()-1, mComposing.length(), kauto.GetCompositionString());
         			else 
         				mComposing.append(kauto.GetCompositionString());
