@@ -1127,11 +1127,15 @@ public class KoreanAutomata {
 		}
 		else
 		{
-			int lcIndex0 = GetLastConsonantIndex(mCompositionString.charAt(0));
+			char tempChar = mCompositionString.charAt(0);
+			int lcIndex0 = GetLastConsonantIndex(tempChar);
 			int lcIndex1 = InputTables.LastConsonants.iLast[lcIndex0];
 			int fcIndex = InputTables.LastConsonants.iFirst[lcIndex0];
+			
+			tempChar = (char) ((int) tempChar - lcIndex0 + lcIndex1);
 			mCompleteString = "";
-			mCompleteString += InputTables.LastConsonants.Code[lcIndex1];
+			mCompleteString += tempChar;
+			
 			int vIndex = GetVowelIndex(code);
 			char newChar = ComposeCharWithIndexs(fcIndex, vIndex, 0);
 			mCompositionString = "";
